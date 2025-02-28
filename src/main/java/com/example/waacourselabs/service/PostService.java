@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface PostService {
     List<Post> getAllPosts();
-    Post getPostById(int id);
+    Post getPostById(long id);
     Boolean addPost(Post post);
-    Boolean deletePost(int id);
-    Boolean updatePost(int id, Post post);
+    Boolean deletePost(long id);
+    Boolean updatePost(long id, Post post);
 }

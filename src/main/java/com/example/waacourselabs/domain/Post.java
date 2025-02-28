@@ -1,15 +1,22 @@
 package com.example.waacourselabs.domain;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Post {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     String title;
     String content;
-    String author;
+    @ManyToOne
+    @JoinColumn(name="author_id")
+    User author;
 
     public Post() {
     }
 
-    public Post(long id, String title, String content, String author) {
+    public Post(long id, String title, String content, User author) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -28,7 +35,7 @@ public class Post {
         return content;
     }
 
-    public String getAuthor() {
+    public User getAuthor() {
         return author;
     }
 
@@ -44,7 +51,7 @@ public class Post {
         this.content = content;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(User author) {
         this.author = author;
     }
 }

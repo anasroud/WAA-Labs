@@ -1,13 +1,14 @@
 package com.example.waacourselabs.repo;
 
 import com.example.waacourselabs.domain.Post;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface PostRepo {
-    List<Post> getAllPosts();
-    Post getPostById(int id);
-    Boolean addPost(Post post);
-    Boolean deletePost(int id);
-    Boolean updatePost(int id, Post post);
+public interface PostRepo extends JpaRepository<Post, Long> {
+    List<Post> findAll();
+    Post findById(long id);
+    Post save(Post post);
+
+    void deleteAllById(long id);
 }

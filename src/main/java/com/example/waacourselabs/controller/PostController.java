@@ -1,11 +1,12 @@
 package com.example.waacourselabs.controller;
 
 import com.example.waacourselabs.domain.Post;
+import com.example.waacourselabs.domain.User;
 import com.example.waacourselabs.service.PostService;
+import com.example.waacourselabs.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -13,6 +14,8 @@ import java.util.List;
 public class PostController {
     @Autowired
     PostService postService;
+    @Autowired
+    UserService userService;
 
     @GetMapping
     public List<Post> returnAll() {
@@ -20,7 +23,7 @@ public class PostController {
     }
 
     @GetMapping("/{id}")
-    public Post returnPost(@PathVariable int id) {
+    public Post returnPost(@PathVariable long id) {
         return postService.getPostById(id);
     }
 
@@ -30,12 +33,12 @@ public class PostController {
     }
 
     @DeleteMapping("/{id}")
-    public Boolean deletePost(@PathVariable int id) {
+    public Boolean deletePost(@PathVariable long id) {
         return postService.deletePost(id);
     }
 
     @PutMapping("/{id}")
-    public Boolean updatePost(@PathVariable int id, @RequestBody Post post) {
+    public Boolean updatePost(@PathVariable long id, @RequestBody Post post) {
         return postService.updatePost(id, post);
     }
 }
