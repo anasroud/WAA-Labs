@@ -15,4 +15,5 @@ public interface UserService {
     User findByName(String name);
     Boolean existsByName(String name);
     User findByPost(Post post);
+    List<User> filterUsers(int numberPosts);
 }

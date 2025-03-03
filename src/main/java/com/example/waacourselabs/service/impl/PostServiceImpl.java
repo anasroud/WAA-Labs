@@ -19,6 +19,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> getAllPosts() {
+        // find all with just the author id not the auther object
         return postRepo.findAll();
     }
 

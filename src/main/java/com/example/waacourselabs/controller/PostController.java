@@ -14,8 +14,6 @@ import java.util.List;
 public class PostController {
     @Autowired
     PostService postService;
-    @Autowired
-    UserService userService;
 
     @GetMapping
     public List<Post> returnAll() {

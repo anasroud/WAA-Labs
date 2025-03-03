@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAllUsers() {
-        return this.userRepo.findAll();
+        return userRepo.findAll();
     }
 
     @Override
@@ -62,5 +62,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByPost(Post post) {
         return this.userRepo.findByPost(Collections.singletonList(post));
+    }
+
+    // get the users who have posted a certain number of posts
+    @Override
+    public List<User> filterUsers(int numberPosts) {
+        return this.userRepo.findAll().stream().filter(user -> user.getPost().size() >= numberPosts).toList();
     }
 }

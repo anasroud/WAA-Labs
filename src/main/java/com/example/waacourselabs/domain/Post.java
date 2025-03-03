@@ -1,5 +1,6 @@
 package com.example.waacourselabs.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -9,8 +10,9 @@ public class Post {
     long id;
     String title;
     String content;
-    @ManyToOne
-    @JoinColumn(name="author_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id")
+    @JsonIgnore
     User author;
 
     public Post() {
@@ -53,5 +55,15 @@ public class Post {
 
     public void setAuthor(User author) {
         this.author = author;
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", content='" + content + '\'' +
+                ", author=" + author +
+                '}';
     }
 }

@@ -37,4 +37,11 @@ public class UserController {
     public Boolean updateUser(@PathVariable long id, @RequestBody User user) {
         return userService.updateUser(id, user);
     }
+
+    // filter users depending on the number of posts using numberPosts parameter
+    @GetMapping("/filter")
+    public List<User> filterUsers(@RequestParam int numberPosts) {
+        return userService.filterUsers(numberPosts);
+    }
+
 }
