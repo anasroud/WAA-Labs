@@ -1,5 +1,6 @@
 package com.example.waacourselabs.controller;
 
+import com.example.waacourselabs.domain.Comment;
 import com.example.waacourselabs.domain.Post;
 import com.example.waacourselabs.domain.User;
 import com.example.waacourselabs.service.PostService;
@@ -38,5 +39,10 @@ public class PostController {
     @PutMapping("/{id}")
     public Boolean updatePost(@PathVariable long id, @RequestBody Post post) {
         return postService.updatePost(id, post);
+    }
+
+    @GetMapping("/{id}/comments")
+    public List<Comment> returnAllComments(@PathVariable long id) {
+        return postService.getAllComments(id);
     }
 }

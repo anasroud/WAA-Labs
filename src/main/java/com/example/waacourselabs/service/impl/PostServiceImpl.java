@@ -1,5 +1,6 @@
 package com.example.waacourselabs.service.impl;
 
+import com.example.waacourselabs.domain.Comment;
 import com.example.waacourselabs.domain.Post;
 import com.example.waacourselabs.repo.PostRepo;
 import com.example.waacourselabs.service.PostService;
@@ -51,4 +52,8 @@ public class PostServiceImpl implements PostService {
         return true;
     }
 
+    @Override
+    public List<Comment> getAllComments(long id) {
+        return postRepo.findCommentsById(id);
+    }
 }

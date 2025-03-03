@@ -3,6 +3,8 @@ package com.example.waacourselabs.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class Post {
     @Id
@@ -10,10 +12,15 @@ public class Post {
     long id;
     String title;
     String content;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id")
     @JsonIgnore
     User author;
+
+    @OneToMany
+    List<Comment> comments;
+
 
     public Post() {
     }
