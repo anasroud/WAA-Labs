@@ -1,31 +1,39 @@
 package com.example.waacourselabs.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-import java.sql.Timestamp;
+import java.sql.Time;
 import java.util.Date;
 
 @Entity
 public class Logger {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User user;
     private Date date;
-    private Timestamp timestamp;
+    private Time time;
     private String principal;
-    private String Operation;
+    private String operation;
 
     public Logger() {
     }
 
-    public Logger(Date date, Timestamp timestamp, String principal, String operation) {
+    public Logger(User user, Date date, Time time, String principal, String operation) {
+        this.user = user;
         this.date = date;
-        this.timestamp = timestamp;
+        this.time = time;
         this.principal = principal;
-        Operation = operation;
+        this.operation = operation;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
     }
 
     public Long getId() {
@@ -36,8 +44,8 @@ public class Logger {
         return date;
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
+    public Time getTime() {
+        return time;
     }
 
     public String getPrincipal() {
@@ -45,7 +53,7 @@ public class Logger {
     }
 
     public String getOperation() {
-        return Operation;
+        return operation;
     }
 
     public void setId(Long id) {
@@ -56,8 +64,8 @@ public class Logger {
         this.date = date;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
+    public void setTime(Time time) {
+        this.time = time;
     }
 
     public void setPrincipal(String principal) {
@@ -65,6 +73,17 @@ public class Logger {
     }
 
     public void setOperation(String operation) {
-        Operation = operation;
+        this.operation = operation;
+    }
+
+    @Override
+    public String toString() {
+        return "Logger{" +
+                "id=" + id +
+                ", date=" + date +
+                ", time=" + time +
+                ", principal='" + principal + '\'' +
+                ", operation='" + operation + '\'' +
+                '}';
     }
 }

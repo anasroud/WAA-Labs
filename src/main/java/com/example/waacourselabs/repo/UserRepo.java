@@ -1,5 +1,6 @@
 package com.example.waacourselabs.repo;
 
+import com.example.waacourselabs.aspect.ExecutionTime;
 import com.example.waacourselabs.domain.Post;
 import com.example.waacourselabs.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,4 +13,6 @@ public interface UserRepo extends JpaRepository<User, Long> {
     User findByName(String name);
     Boolean existsByName(String name);
     User findByPost(List<Post> post);
+    @ExecutionTime
+    User getUserById(long id);
 }

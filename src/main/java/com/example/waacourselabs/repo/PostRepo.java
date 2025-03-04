@@ -10,14 +10,9 @@ import java.util.List;
 
 @Repository
 public interface PostRepo extends JpaRepository<Post, Long> {
-    @ExecutionTime
     List<Post> findAll();
-    @ExecutionTime
     Post findById(long id);
-    @ExecutionTime
     Post save(Post post);
-    @ExecutionTime
     void deleteAllById(long id);
-    @ExecutionTime
     List<Comment> findCommentsById(long id);
 }
